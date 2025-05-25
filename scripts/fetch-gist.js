@@ -1,30 +1,28 @@
-const fs = require('fs');
-const path = require('path');
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
+import fs from 'fs/promises';
 
-const GIST_ID = 'cbde8f9b3cfc9aab48b4664fa058e1e9'; // ganti dengan Gist ID kamu
+const GIST_ID = 'cbde8f9b3cfc9aab48b4664fa058e1e9';
+const TARGET_DIR = 'content/posts';
 
-async function fetchGistFiles() {
+async function fetchGistMarkdown() {
   const res = await fetch(`https://api.github.com/gists/${GIST_ID}`);
-  if (!res.ok) throw new Error(`Failed to fetch Gist: ${res.statusText}`);
+  const data = await res.json();
+  const files = data.files;
 
-  const gist = await res.json();
-  const postsDir = path.join(__dirname, '..', 'content', 'posts');
+  await fs.rm(TARGET_DIR, { recursive: true, force: true });
+  await fs.mkdir(TARGET_DIR, { recursive: true });
 
-  if (!fs.existsSync(postsDir)) {
-    fs.mkdirSync(postsDir, { recursive: true });
-  }
-
-  for (const [filename, file] of Object.entries(gist.files)) {
-    if (filename.endsWith('.md')) {
-      const filepath = path.join(postsDir, filename);
-      fs.writeFileSync(filepath, file.content, 'utf8');
-      console.log(`Saved ${filename}`);
+  for (const file of Object.values(files)) {
+    if (file.filename.endsWith('.md')) {
+      const filePath = `${TARGET_DIR}/${file.filename}`;
+      await fs.writeFile(filePath, file.content);
     }
   }
+
+  console.log('Fetched and saved Gist content.');
 }
 
-fetchGistFiles().catch(err => {
-  console.error(err);
+fetchGistMarkdown().catch(err => {
+  console.error('Error fetching gist:', err);
   process.exit(1);
 });
