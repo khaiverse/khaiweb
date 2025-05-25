@@ -3,6 +3,9 @@ languageCode = "en-us"
 title = "Khaiverse"
 contentDir = "content"
 
+[taxonomies]
+  label = "labels"
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
