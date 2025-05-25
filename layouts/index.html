@@ -1,10 +1,32 @@
 {{ define "main" }}
   <h1>All Posts</h1>
+
+  {{ $paginator := .Paginate (where .Site.RegularPages "Section" "posts") }}
   <ul>
-    {{ range where .Site.RegularPages "Section" "posts" }}
+    {{ range $paginator.Pages }}
       <li>
         <a href="{{ .RelPermalink }}">{{ .Title }}</a>
       </li>
     {{ end }}
   </ul>
+
+  <nav>
+    <ul class="pagination">
+      {{ if $paginator.HasPrev }}
+        <li><a href="{{ $paginator.Prev.URL }}">← Prev</a></li>
+      {{ end }}
+
+      {{ range $paginator.Pagers }}
+        <li>
+          <a href="{{ .URL }}"{{ if eq . $paginator }} class="active"{{ end }}>
+            {{ .PageNumber }}
+          </a>
+        </li>
+      {{ end }}
+
+      {{ if $paginator.HasNext }}
+        <li><a href="{{ $paginator.Next.URL }}">Next →</a></li>
+      {{ end }}
+    </ul>
+  </nav>
 {{ end }}
