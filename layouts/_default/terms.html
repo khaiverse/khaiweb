@@ -1,8 +1,10 @@
 {{ define "main" }}
-  <h1>Categories</h1>
+  <h1>All Categories</h1>
   <ul>
-    {{ range .Pages }}
-      <li><a href="{{ .RelPermalink }}">{{ .Title }} ({{ .Count }})</a></li>
+    {{ range $term, $pages := .Data.Terms }}
+      <li>
+        <a href="{{ $term | urlize }}">{{ $term }}</a> ({{ len $pages }})
+      </li>
     {{ end }}
   </ul>
 {{ end }}
