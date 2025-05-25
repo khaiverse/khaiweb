@@ -1,7 +1,7 @@
 baseURL = "https://khaiverse.github.io/khaiverse-web/"
 languageCode = "en-us"
 title = "Khaiverse"
-theme = ""
+#theme = ""
 contentDir = "content"
 
 [markup]
