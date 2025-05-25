@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{ .Title }}</title>
-  </head>
-  <body>
+{{ define "main" }}
+  <article>
     <h1>{{ .Title }}</h1>
-    {{ .Content }}
-  </body>
-</html>
+    <p><small>By {{ .Params.author }} on {{ .Date.Format "Jan 2, 2006" }}</small></p>
+    <div>
+      {{ .Content }}
+    </div>
+  </article>
+{{ end }}
