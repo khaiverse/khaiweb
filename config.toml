@@ -1,8 +1,10 @@
 baseURL = "https://khaiverse.github.io/khaiverse-web/"
 languageCode = "en-us"
-title = "Khaiverse Web"
+title = "Khaiverse"
 theme = ""
-publishDir = "public"
+contentDir = "content"
 
-[params]
-  description = "Website powered by Hugo and Gist content"
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
