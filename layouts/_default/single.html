@@ -1,9 +1,7 @@
-{{ define "main" }}
-  <article>
-    <h1>{{ .Title }}</h1>
-    <p><small>By {{ .Params.author }} on {{ .Date.Format "Jan 2, 2006" }}</small></p>
-    <div>
-      {{ .Content }}
-    </div>
-  </article>
+{{ if .Params.categories }}
+  <p><strong>Categories:</strong>
+    {{ range $index, $category := .Params.categories }}
+      <a href="{{ "/categories/" | relLangURL }}{{ $category | urlize }}">{{ $category }}</a>{{ if ne (add $index 1) (len .Params.categories) }}, {{ end }}
+    {{ end }}
+  </p>
 {{ end }}
