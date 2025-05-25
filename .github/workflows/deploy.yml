@@ -2,35 +2,33 @@ name: Build and Deploy Hugo site from Gist
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
+      - name: Checkout Repo
         uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 18
 
-      - name: Install dependencies
+      - name: Install Node Modules
         run: npm install
 
-      - name: Fetch posts from Gist
+      - name: Fetch Content from Gist
         run: node scripts/fetch-gist.js
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.111.3'
+          hugo-version: '0.121.2'
 
-      - name: Build Hugo site
+      - name: Build Hugo
         run: hugo --minify
 
       - name: Deploy to GitHub Pages
