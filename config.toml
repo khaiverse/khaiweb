@@ -2,7 +2,7 @@ baseURL = "https://khaiverse.github.io/khaiweb/"
 languageCode = "en-us"
 title = "Khaiverse"
 contentDir = "content"
-paginate = 5
+paginate = 5 #Luek list sik tempo lek bale
 
 [taxonomies]
   label = "labels"
