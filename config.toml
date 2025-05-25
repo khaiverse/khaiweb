@@ -2,6 +2,7 @@ baseURL = "https://khaiverse.github.io/khaiweb/"
 languageCode = "en-us"
 title = "Khaiverse"
 contentDir = "content"
+paginate = 5
 
 [taxonomies]
   label = "labels"
