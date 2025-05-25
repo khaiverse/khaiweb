@@ -3,7 +3,7 @@
   <ul>
     {{ range $term, $pages := .Data.Terms }}
       <li>
-        <a href="{{ $term | urlize }}">{{ $term }}</a> ({{ len $pages }})
+        <a href="{{ "/categories/" | relLangURL }}{{ $term | urlize }}/">{{ $term }}</a> ({{ len $pages }})
       </li>
     {{ end }}
   </ul>
