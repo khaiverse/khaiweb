@@ -1,7 +1,8 @@
 {{ with .Params.categories }}
   <p><strong>Categories:</strong>
-    {{ range $index, $category := . }}
-      <a href="{{ "/categories/" | relLangURL }}{{ $category | urlize }}">{{ $category }}</a>{{ if ne (add $index 1) (len .) }}, {{ end }}
+    {{ $last := sub (len .) 1 }}
+    {{ range $i, $category := . }}
+      <a href="{{ "/categories/" | relLangURL }}{{ $category | urlize }}">{{ $category }}</a>{{ if lt $i $last }}, {{ end }}
     {{ end }}
   </p>
 {{ end }}
