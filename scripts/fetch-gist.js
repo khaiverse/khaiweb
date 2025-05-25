@@ -2,8 +2,7 @@ import fetch from 'node-fetch';
 import fs from 'fs/promises';
 
 // ID Gist yang berisi file markdown
-const GIST_ID = 'cbde8f9b3cfc9aab48b4664fa058e1e9';
-const GITHUB_TOKEN = process.env.KHAI_TOKEN; // 🟡 Tambahan untuk akses Gist privatee
+const GITHUB_TOKEN = process.env.KHAI_TOKEN; // 🟡 Tambahan untuk akses Gist private
 const CONTENT_DIR = 'content';
 
 async function fetchGistMarkdown() {
