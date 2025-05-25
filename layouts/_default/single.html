@@ -1,6 +1,10 @@
-{{ define "main" }}
-  <article>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ .Title }}</title>
+  </head>
+  <body>
     <h1>{{ .Title }}</h1>
-    <div>{{ .Content }}</div>
-  </article>
-{{ end }}
+    {{ .Content }}
+  </body>
+</html>
